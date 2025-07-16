@@ -27,10 +27,14 @@ async function main() {
   app.use("/", (req, res) => {
     res.send("Book Store Server is Running");
   });
+
+  setInterval(() => {
+    mongoose.connection.db.admin().ping().catch(() => { });
+  }, 600000);
 }
 
 main()
-  .then(()=>console.log("mongo db connected succesfully"))
+  .then(() => console.log("mongo db connected succesfully"))
   .catch((err) => console.log(err));
 
 
